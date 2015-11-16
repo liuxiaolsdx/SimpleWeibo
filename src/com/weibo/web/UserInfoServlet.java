@@ -17,6 +17,7 @@ import com.weibo.model.*;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -49,21 +50,72 @@ public class UserInfoServlet extends HttpServlet {
 		} else {
 			account = (String) session.getAttribute("s_account");
 		}
-		// delete origin img
+
+		// get origin img
 		UserInfoDao userdao = new UserInfoDao();
 		UserInfo userinfo = userdao.getUserInfoByAccount(account);
-		File file = new File(this.getServletContext().getRealPath("/"), userinfo.getU_img());
-		if (file.isFile() && file.exists())
-			file.delete();
+		String originImg = userinfo.getU_img();
 
-		String u_img = null;
+		String ImgUrl = null;
+		FileItemFactory factory = new DiskFileItemFactory();
+		ServletFileUpload fileload = new ServletFileUpload(factory);
+
+		fileload.setSizeMax(4194304);
+
+		
 		try {
-			u_img = getImgAndSetUerinfo(request, userinfo);
-		} catch (Exception e1) {
+			 @SuppressWarnings("unchecked")
+			List<FileItem> items = fileload.parseRequest(request);
+			for (FileItem item : items) {
+
+				if (item.isFormField()) {
+					switch (item.getFieldName()) {
+					case "nickname":
+						userinfo.setU_nickname(item.getString("utf-8"));
+						break;
+					case "name":
+						userinfo.setU_name(item.getString("utf-8"));
+						break;
+					case "sex":
+						userinfo.setU_sex(item.getString("utf-8"));
+						break;
+					case "content":
+						userinfo.setU_sign(item.getString("utf-8"));
+						break;
+
+					}
+
+				} else {
+					String filename = item.getName();
+					if (!filename.isEmpty()) {
+						File file = new File(filename);
+						filename = getDateTime() + "_" + file.getName();
+						
+ 						File filetoserver = new File(this.getServletContext().getRealPath("/face"), filename);
+
+						try {
+							item.write(filetoserver);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						ImgUrl = "face/" + filename.substring(filename.lastIndexOf("\\") + 1);
+						userinfo.setU_img(ImgUrl);
+						// delete origin img
+						if (originImg != null) {
+							File originfile = new File(this.getServletContext().getRealPath("/"), originImg);
+							if (originfile.isFile() && originfile.exists())
+								originfile.delete();
+						}
+
+					}
+
+				}
+			}
+		} catch (FileUploadException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		userinfo.setU_img(u_img);
 
 		Writer out = response.getWriter();
 		Map<String, Object> root = new HashMap<>();
@@ -87,61 +139,6 @@ public class UserInfoServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doGet(request, response);
-	}
-
-	public String getImgAndSetUerinfo(HttpServletRequest request, UserInfo userinfo) throws Exception {
-		String ImgUrl = null;
-		FileItemFactory factory = new DiskFileItemFactory();
-		ServletFileUpload fileload = new ServletFileUpload(factory);
-
-		fileload.setSizeMax(4194304);
-		@SuppressWarnings("unchecked")
-		List<FileItem> items = fileload.parseRequest(request);
-		for (FileItem item : items) {
-
-			if (item.isFormField()) {
-				switch (item.getFieldName()) {
-				case "nickname":
-					userinfo.setU_nickname(item.getString("utf-8"));
-					break;
-				case "name":
-					userinfo.setU_name(item.getString("utf-8"));
-					break;
-				case "sex":
-					userinfo.setU_sex(item.getString("utf-8"));
-					break;
-				case "content":
-					userinfo.setU_sign(item.getString("utf-8"));
-					break;
-
-				}
-
-			} else {
-				String filename = item.getName();
-				// System.out.println(filename);
-				if (filename != null) {
-					File file = new File(filename);
-					filename = getDateTime() + "_" + file.getName();
-					// System.out.println(filename);
-
-					File filetoserver = new File(this.getServletContext().getRealPath("/face"), filename);
-
-					// File filetoserver = new
-					// File("D:\\javaworkspace\\SimpleWeibo\\WebRoot\\face",
-					// filename);
-					// System.out.println(this.getServletContext().getRealPath("/face"));
-					item.write(filetoserver);
-					// ImgUrl = request.getContextPath() + "/face/" +
-					// filename.substring(filename.lastIndexOf("\\") + 1);
-					// ImgUrl = "D:\\javaworkspace\\SimpleWeibo\\face\\" +
-					// filename;
-					ImgUrl = "face/" + filename.substring(filename.lastIndexOf("\\") + 1);
-					// System.out.println(ImgUrl);
-				}
-
-			}
-		}
-		return ImgUrl;
 	}
 
 	public String getDateTime() {

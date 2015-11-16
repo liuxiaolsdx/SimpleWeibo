@@ -32,7 +32,9 @@ public class SignUp extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if(!UserInfoDao.checkAccount(account)){
 			if(UserInfoDao.insertAccount(account, password)){
-				out.println("你好 " + account + " !" + "注册成功！");}
+				out.println("你好 " + account + " !" + "注册成功！");
+				out.println("<a href='SignIn.html'>登录</a>");
+				}
 		}else{
 			out.println("你好 " + ",此用户名已被注册！");
 		}
