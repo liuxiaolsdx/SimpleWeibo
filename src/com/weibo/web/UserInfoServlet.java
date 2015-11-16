@@ -42,27 +42,29 @@ public class UserInfoServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String account = null;
-		UserInfo userinfo = new UserInfo();
+		// UserInfo userinfo = new UserInfo();
 		HttpSession session = request.getSession();
 		if (request.getParameter("account") != null) {
 			account = request.getParameter("account");
 		} else {
 			account = (String) session.getAttribute("s_account");
 		}
-//		userinfo.setU_nickname(request.getParameter("nickname"));
-//		userinfo.setU_name(request.getParameter("name"));
-//		userinfo.setU_sex(request.getParameter("sex"));
-//		userinfo.setU_sign(request.getParameter("content"));
+		// delete origin img
+		UserInfoDao userdao = new UserInfoDao();
+		UserInfo userinfo = userdao.getUserInfoByAccount(account);
+		File file = new File(this.getServletContext().getRealPath("/"), userinfo.getU_img());
+		if (file.isFile() && file.exists())
+			file.delete();
+
 		String u_img = null;
 		try {
-			u_img = getImgAndSetUerinfo(request,userinfo);
+			u_img = getImgAndSetUerinfo(request, userinfo);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		userinfo.setU_img(u_img);
 
-		UserInfoDao userdao = new UserInfoDao();
 		Writer out = response.getWriter();
 		Map<String, Object> root = new HashMap<>();
 		root.put("account", account);
@@ -81,14 +83,13 @@ public class UserInfoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doGet(request, response);
 	}
 
-	public String getImgAndSetUerinfo(HttpServletRequest request,UserInfo userinfo) throws Exception {
+	public String getImgAndSetUerinfo(HttpServletRequest request, UserInfo userinfo) throws Exception {
 		String ImgUrl = null;
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload fileload = new ServletFileUpload(factory);
@@ -96,11 +97,10 @@ public class UserInfoServlet extends HttpServlet {
 		fileload.setSizeMax(4194304);
 		@SuppressWarnings("unchecked")
 		List<FileItem> items = fileload.parseRequest(request);
-		for(FileItem item : items) {
-			
+		for (FileItem item : items) {
+
 			if (item.isFormField()) {
-				switch(item.getFieldName())
-				{
+				switch (item.getFieldName()) {
 				case "nickname":
 					userinfo.setU_nickname(item.getString("utf-8"));
 					break;
@@ -118,38 +118,42 @@ public class UserInfoServlet extends HttpServlet {
 
 			} else {
 				String filename = item.getName();
-//				System.out.println(filename);
+				// System.out.println(filename);
 				if (filename != null) {
 					File file = new File(filename);
 					filename = getDateTime() + "_" + file.getName();
-//					System.out.println(filename);
+					// System.out.println(filename);
 
 					File filetoserver = new File(this.getServletContext().getRealPath("/face"), filename);
 
-//					File filetoserver = new File("D:\\javaworkspace\\SimpleWeibo\\WebRoot\\face", filename);
-//					System.out.println(this.getServletContext().getRealPath("/face"));
+					// File filetoserver = new
+					// File("D:\\javaworkspace\\SimpleWeibo\\WebRoot\\face",
+					// filename);
+					// System.out.println(this.getServletContext().getRealPath("/face"));
 					item.write(filetoserver);
-//					ImgUrl = request.getContextPath() + "/face/" + filename.substring(filename.lastIndexOf("\\") + 1);
-//					ImgUrl = "D:\\javaworkspace\\SimpleWeibo\\face\\" + filename;
+					// ImgUrl = request.getContextPath() + "/face/" +
+					// filename.substring(filename.lastIndexOf("\\") + 1);
+					// ImgUrl = "D:\\javaworkspace\\SimpleWeibo\\face\\" +
+					// filename;
 					ImgUrl = "face/" + filename.substring(filename.lastIndexOf("\\") + 1);
-//					System.out.println(ImgUrl);
+					// System.out.println(ImgUrl);
 				}
 
 			}
 		}
 		return ImgUrl;
 	}
-	
-	public String getDateTime(){
-		Calendar calendar=Calendar.getInstance();
+
+	public String getDateTime() {
+		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
-        int mon = calendar.get(Calendar.MONTH)+1;
-        int day = calendar.get(Calendar.DATE);
-        int hour = calendar.get(Calendar.HOUR);
-        int min = calendar.get(Calendar.MINUTE);
-        int sec = calendar.get(Calendar.SECOND);
-        int mi = calendar.get(Calendar.MILLISECOND);
-		return ""+year+mon+day+hour+min+sec+mi+"";
+		int mon = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DATE);
+		int hour = calendar.get(Calendar.HOUR);
+		int min = calendar.get(Calendar.MINUTE);
+		int sec = calendar.get(Calendar.SECOND);
+		int mi = calendar.get(Calendar.MILLISECOND);
+		return "" + year + mon + day + hour + min + sec + mi + "";
 
 	}
 

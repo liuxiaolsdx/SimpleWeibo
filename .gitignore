@@ -1,6 +1,9 @@
 # Generated files
 bin/
 
+#resource files
+face/
+
 # Java class files
 *.class
 
