@@ -9,16 +9,26 @@
     <form action="SignUp.do" method="post">   
     <table>
     <tr>
-    <td>账号：<input name="account" type="text"/></td>
+    <td>账号：<input id="input" name="account" type="text"/></td>
     </tr>
     <tr>
-    <td>密码：<input name="password" type="password"/></td>
+    <td>密码：<input id="input" name="password" type="password"/></td>
     </tr>
     <tr>
-    <td ><input type="submit" value="注册"/><input type="reset" value="取消"/></td>
+    <td ><input type="submit" value="注册" onclick="checkContentNull()"/><input type="reset" value="取消"/></td>
     </tr>
     </table>
     </form>
 </div>
+<script>
+function checkContentNull()
+{
+var x=document.getElementById("input").value;
+if(x=="")
+	{
+	alert("请输入内容！");
+	}
+}
+</script>
 </body>
 </html>

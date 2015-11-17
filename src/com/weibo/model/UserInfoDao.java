@@ -79,15 +79,15 @@ public class UserInfoDao {
 		UserInfo userInfo = new UserInfo();
 		try {
 			while (rs.next()) {
-				userInfo.setU_id(rs.getInt(1));
+				userInfo.setU_id(rs.getInt("u_id"));
 				userInfo.setU_account(account);
 				userInfo.setU_password(rs.getString("u_password"));
-				userInfo.setU_nickname(rs.getString(4));
-				userInfo.setU_img(rs.getString(5));
-				userInfo.setU_sex(rs.getString(6));
-				userInfo.setU_sign(rs.getString(7));
-				userInfo.setU_name(rs.getString(8));
-				userInfo.setU_date(rs.getString(9));
+				userInfo.setU_nickname(rs.getString("u_nickname"));
+				userInfo.setU_img(rs.getString("u_img"));
+				userInfo.setU_sex(rs.getString("u_sex"));
+				userInfo.setU_sign(rs.getString("u_sign"));
+				userInfo.setU_name(rs.getString("u_name"));
+				userInfo.setU_date(rs.getString("u_date"));
 			}
 			return userInfo;
 		} catch (Exception e) {
@@ -159,14 +159,14 @@ public class UserInfoDao {
 		try {
 			while (rs.next()){
 				UserInfo user = new UserInfo();
-				user.setU_id(rs.getInt(1));
-				user.setU_account(rs.getString(2));
-				user.setU_nickname(rs.getString(4));
-				user.setU_img(rs.getString(5));
-				user.setU_sex(rs.getString(6));
-				user.setU_sign(rs.getString(7));
-				user.setU_name(rs.getString(8));
-				user.setU_date(rs.getString(9));
+				user.setU_id(rs.getInt("u_id"));
+				user.setU_account(rs.getString("u_account"));
+				user.setU_nickname(rs.getString("u_nickname"));
+				user.setU_img(rs.getString("u_img"));
+				user.setU_sex(rs.getString("u_sex"));
+				user.setU_sign(rs.getString("u_sign"));
+				user.setU_name(rs.getString("u_name"));
+				user.setU_date(rs.getString("u_date"));
 				userList.add(user);
 //				counts++;
 			}

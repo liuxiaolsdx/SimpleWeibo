@@ -88,11 +88,11 @@ public class UserInfoServlet extends HttpServlet {
 				} else {
 					String filename = item.getName();
 					if (!filename.isEmpty()) {
-						File file = new File(filename);
-						filename = getDateTime() + "_" + file.getName();
+//						File file = new File(filename);
+						filename = getDateTime() + "_" +userinfo.getU_id()+filename.substring(filename.lastIndexOf("."));
 						
  						File filetoserver = new File(this.getServletContext().getRealPath("/face"), filename);
-
+ 
 						try {
 							item.write(filetoserver);
 						} catch (Exception e) {

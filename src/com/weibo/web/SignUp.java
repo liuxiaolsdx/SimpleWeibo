@@ -26,23 +26,25 @@ public class SignUp extends HttpServlet {
 
 		account = request.getParameter("account");
 		password = request.getParameter("password");
-		
-		
+
 		UserInfoDao UserInfoDao = new UserInfoDao();
 		PrintWriter out = response.getWriter();
-		if(!UserInfoDao.checkAccount(account)){
-			if(UserInfoDao.insertAccount(account, password)){
-				out.println("你好 " + account + " !" + "注册成功！");
-				out.println("<a href='SignIn.html'>登录</a>");
+		if (account.isEmpty() || password.isEmpty()) {
+			out.println("请输入有效内容！");
+			out.println("<a href='SignUp.html'>重新注册</a>");
+		} else {
+			if (!UserInfoDao.checkAccount(account)) {
+				if (UserInfoDao.insertAccount(account, password)) {
+					out.println("你好 " + account + " !" + "注册成功！");
+					out.println("<a href='SignIn.html'>登录</a>");
 				}
-		}else{
-			out.println("你好 " + ",此用户名已被注册！");
+			} else {
+				out.println("你好 " + ",此用户名已被注册！");
+			}
 		}
-
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws IOException, ServletException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doGet(request, response);
 	}
 
