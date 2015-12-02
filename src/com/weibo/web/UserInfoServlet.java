@@ -14,6 +14,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.weibo.model.*;
+import com.weibo.util.WeiboLogger;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -92,12 +93,13 @@ public class UserInfoServlet extends HttpServlet {
 						filename = getDateTime() + "_" +userinfo.getU_id()+filename.substring(filename.lastIndexOf("."));
 						
  						File filetoserver = new File(this.getServletContext().getRealPath("/face"), filename);
- 
+ 						WeiboLogger.debug("The account is:" + account +". The real path is:" 
+ 								+ this.getServletContext().getRealPath("/face") + "/" + filename);
 						try {
 							item.write(filetoserver);
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							WeiboLogger.error("Save to server error!The file name is: " + filename);
+							WeiboLogger.exception(e);
 						}
 						ImgUrl = "face/" + filename.substring(filename.lastIndexOf("\\") + 1);
 						userinfo.setU_img(ImgUrl);
@@ -113,8 +115,8 @@ public class UserInfoServlet extends HttpServlet {
 				}
 			}
 		} catch (FileUploadException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			WeiboLogger.error("Modify user infomation error!The account is: " + account);
+			WeiboLogger.exception(e1);
 		}
 
 		Writer out = response.getWriter();
@@ -131,8 +133,7 @@ public class UserInfoServlet extends HttpServlet {
 		try {
 			template.process(root, out);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 		}
 
 	}

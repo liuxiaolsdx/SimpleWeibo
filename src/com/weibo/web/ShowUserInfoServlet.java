@@ -3,6 +3,7 @@ package com.weibo.web;
 import javax.servlet.http.*;
 
 import com.weibo.model.*;
+import com.weibo.util.WeiboLogger;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -58,8 +59,7 @@ public class ShowUserInfoServlet extends HttpServlet {
 		try {
 			template.process(UserInfo,out);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 		}
 		
 		

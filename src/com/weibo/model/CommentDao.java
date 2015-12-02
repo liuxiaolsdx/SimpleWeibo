@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.weibo.DB.DB;
+import com.weibo.util.WeiboLogger;
 
 
 public class CommentDao {
@@ -56,8 +57,7 @@ public class CommentDao {
 			}
 			return commentList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return null;
 		} finally {
 			db.closeConn();
@@ -89,8 +89,7 @@ public class CommentDao {
 			}
 			return commentList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return null;
 		} finally {
 			db.closeConn();
@@ -114,8 +113,7 @@ public class CommentDao {
 			}
 			return num;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return 0;
 		} finally {
 			db.closeConn();

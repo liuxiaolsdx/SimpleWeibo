@@ -7,6 +7,7 @@ import java.util.ArrayList;
 //import java.sql.Timestamp;
 
 import com.weibo.DB.DB;
+import com.weibo.util.WeiboLogger;
 
 public class BlogDao {
 	/**
@@ -54,8 +55,7 @@ public class BlogDao {
 			}
 			return blog;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return null;
 		} finally {
 			db.closeConn();
@@ -101,8 +101,7 @@ public class BlogDao {
 			}
 			return blogList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return null;
 		} finally {
 			db.closeConn();
@@ -145,8 +144,7 @@ public class BlogDao {
 			}
 			return blogList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return null;
 		} finally {
 			db.closeConn();
@@ -172,8 +170,7 @@ public class BlogDao {
 			}
 			return num;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return 0;
 		} finally {
 			db.closeConn();
@@ -197,8 +194,7 @@ public class BlogDao {
 			}
 			return num;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return 0;
 		} finally {
 			db.closeConn();
@@ -272,8 +268,7 @@ public class BlogDao {
 			}
 			return res;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return 0;
 		}finally{
 			db.closeConn();
@@ -316,8 +311,7 @@ public class BlogDao {
 			}
 			return blogList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return null;
 		} finally {
 			db.closeConn();
@@ -342,8 +336,7 @@ public class BlogDao {
 			}
 			return num;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 			return 0;
 		} finally {
 			db.closeConn();

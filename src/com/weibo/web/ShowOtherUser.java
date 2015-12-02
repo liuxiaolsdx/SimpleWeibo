@@ -16,6 +16,7 @@ import javax.servlet.http.*;
 
 import com.weibo.model.UserInfo;
 import com.weibo.model.UserInfoDao;
+import com.weibo.util.WeiboLogger;
 
 public class ShowOtherUser extends HttpServlet {
 
@@ -53,13 +54,13 @@ public class ShowOtherUser extends HttpServlet {
 		root.put("userList", UserList);
 		root.put("totalPages", totalPages);
 		root.put("p", currPage);
+		
 		Writer out = response.getWriter();
 		Template template = cfg.getTemplate("OtherUser.ftl");
 		try {
 			template.process(root,out);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 		}
 		
 		

@@ -30,12 +30,7 @@ public class ForwardServlet extends HttpServlet {
 		
 		int uid =user.getU_id();
 		Blog orgBlog = bDao.getBlogByBid(bid);
-//		Forward forward = new Forward();
-//		forward.setBlog(blog);
-//		forward.setUid(uid);
-//		forward.setTitle("//@"+blog.getAccount()+" :");
-		
-//		bDao.forwardBlog(blog.getFnum(),forward);
+
 		Blog blog=new Blog();
 		
 		if(request.getParameter("f")!=null){

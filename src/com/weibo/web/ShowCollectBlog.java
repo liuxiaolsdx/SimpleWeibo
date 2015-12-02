@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.weibo.model.*;
+import com.weibo.util.WeiboLogger;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -76,8 +77,7 @@ public class ShowCollectBlog extends HttpServlet {
 		try {
 			template.process(root, out );
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 		}
 
 		

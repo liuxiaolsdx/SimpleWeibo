@@ -23,15 +23,12 @@ public class WriteWeibo extends HttpServlet {
 		UserInfo currUser = (UserInfo) s.getAttribute("userinfo");
 		int uid = currUser.getU_id();
 
-		// Timestamp currentTime = new Timestamp(new Date().getTime());
-
 		String content = request.getParameter("content");
 
 		Blog blog = new Blog();
 
 		blog.setUid(uid);
 		blog.setContent(content);
-		// blog.setTime(currentTime);
 
 		BlogDao bDao = new BlogDao();
 

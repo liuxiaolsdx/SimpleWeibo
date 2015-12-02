@@ -19,6 +19,7 @@ import com.weibo.model.CommentDao;
 import com.weibo.model.FriendsDao;
 import com.weibo.model.UserInfo;
 import com.weibo.model.UserInfoDao;
+import com.weibo.util.WeiboLogger;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -57,7 +58,6 @@ public class OtherUserHome extends HttpServlet {
 		long counts = bDao.getAllMyBlogSum(user.getU_id());
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		
-		//get comments
 		//get comments
 		CommentDao cDao = new CommentDao();
 		for(Blog b:blogList){
@@ -101,8 +101,7 @@ public class OtherUserHome extends HttpServlet {
 		try {
 			template.process(root, out);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 		}
 		
 	}

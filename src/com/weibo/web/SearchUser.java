@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.weibo.model.SearchDao;
 import com.weibo.model.UserInfo;
+import com.weibo.util.WeiboLogger;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -58,8 +59,7 @@ public class SearchUser extends HttpServlet {
 		try {
 			template.process(root,out);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WeiboLogger.exception(e);
 		}
 
 	}
