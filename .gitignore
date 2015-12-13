@@ -1,9 +1,28 @@
+#project configuration 
+.settings
+.settings/*
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Eclipse Core
+.project
+.tern-project
+
 # Generated files
-bin/
+bin/*
+target/*
 
 #resource files
-face/
+/face/
 
 # Java class files
 *.class
 
+#package files
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
