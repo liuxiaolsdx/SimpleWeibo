@@ -8,6 +8,7 @@ import java.util.ArrayList;
 //import static org.easymock.EasyMock.*;
 //import org.easymock.EasyMock;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.weibo.model.SearchDao;
@@ -29,6 +30,7 @@ public class SearchUserDaoTest {
 	}
 
 	@Test
+	@Ignore
 	public void test() {
 //		mockDB.executeQuery(anyObject(), anyObject());
 //		expectLastCall().andStubReturn(mockResultSet);

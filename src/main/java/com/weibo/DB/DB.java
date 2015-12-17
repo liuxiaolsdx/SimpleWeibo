@@ -18,7 +18,7 @@ public class DB {
 	public void getConnection() {
 
 		Properties props = new Properties();
-		try (InputStream in = DB.class.getResourceAsStream("database.properties")) {
+		try (InputStream in = DB.class.getResourceAsStream("/database.properties")) {
 			props.load(in);
 		} catch (IOException e1) {
 			WeiboLogger.exception(e1);

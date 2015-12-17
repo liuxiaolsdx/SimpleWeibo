@@ -9,7 +9,7 @@ public class WeiboLogger {
 //	private static Logger logger = Logger.getLogger(WeiboLogger.class);
 	
 	static {
-		PropertyConfigurator.configure(WeiboLogger.class.getResourceAsStream("log4j.properties"));
+		PropertyConfigurator.configure(WeiboLogger.class.getResourceAsStream("/log4j.properties"));
 	}
 
     public static void debug(Object msg) {  

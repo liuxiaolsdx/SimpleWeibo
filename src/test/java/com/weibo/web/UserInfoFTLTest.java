@@ -27,6 +27,7 @@ public class UserInfoFTLTest {
 		user.put("u_sign", "abcd<a href='home'>主页</a>");
 	}
     @Test  
+    @Ignore
     public void print() throws TemplateException, IOException{ 
         new FreeMarkerUtil().print("userinfo.ftl", root);  
         new FreeMarkerUtil().printFile("userinfo.ftl", root, new File("D:\\ftl\\userinfo.html"));  

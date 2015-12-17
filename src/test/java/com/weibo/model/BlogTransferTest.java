@@ -2,6 +2,7 @@ package com.weibo.model;
 
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class BlogTransferTest {
@@ -14,6 +15,7 @@ public class BlogTransferTest {
 	}
 
 	@Test
+	@Ignore
 	public void test() {
 		String str2 = "Test two:@  first@@first,  @second;,so what output?";
 		
