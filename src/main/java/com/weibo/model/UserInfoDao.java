@@ -20,10 +20,7 @@ public class UserInfoDao {
 		String sql = "select * from user where u_account=? and u_password=?";
 		ResultSet rs = db.executeQuery(sql, new Object[] { account, password });
 		try {
-			if (rs.next())
-				return true;
-			else
-				return false;
+			return rs.next();
 		} catch (SQLException e) {
 			WeiboLogger.exception(e);
 			return false;
@@ -41,10 +38,9 @@ public class UserInfoDao {
 		DB db = new DB();
 		db.getConnection();
 		String sql = "insert into user(u_account,u_password) values(?,?)";
-		int rs = 0;
-		rs = db.executeUpdate(sql, new Object[] { account, password });
+		int rs = db.executeUpdate(sql, new Object[] { account, password });
 		db.closeConn();
-		return rs > 0 ? true : false;
+		return rs > 0;
 	}
 	/**
 	 * whether or not update user information success
@@ -62,10 +58,9 @@ public class UserInfoDao {
 		DB db = new DB();
 		db.getConnection();
 		String sql = "update user set u_nickname=?,u_name=?,u_sex=?,u_sign=?,u_img=? where u_account = ?";
-		int rs = 0;
-		rs = db.executeUpdate(sql, new Object[] { u_nickname, u_name, u_sex, u_sign, u_img, account });
+		int rs = db.executeUpdate(sql, new Object[] { u_nickname, u_name, u_sex, u_sign, u_img, account });
 		db.closeConn();
-		return rs > 0 ? true : false;
+		return rs > 0;
 	}
 	/**
 	 * get user information by account
@@ -107,10 +102,7 @@ public class UserInfoDao {
 		String sql = "select * from user where u_account=?";
 		ResultSet rs = db.executeQuery(sql, new Object[] { account });
 		try {
-			if (rs.next())
-				return true;
-			else
-				return false;
+			return rs.next();
 		} catch (SQLException e) {
 			WeiboLogger.exception(e);
 			return false;
@@ -129,10 +121,7 @@ public class UserInfoDao {
 		String sql = "select * from user where u_password=?";
 		ResultSet rs = db.executeQuery(sql, new Object[] { password });
 		try {
-			if (rs.next())
-				return true;
-			else
-				return false;
+			return rs.next();
 		} catch (SQLException e) {
 			WeiboLogger.exception(e);
 			return false;
@@ -149,7 +138,7 @@ public class UserInfoDao {
 	 */
 	public ArrayList<UserInfo> getSomeUser(int uid,int showPageNum,int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<UserInfo>();
+		ArrayList<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_id<>? and u_id not in(select r_fid from relationship where r_uid=?)"
 				+ "order by rand() limit ?,?";
 		//beside current user and who has followed

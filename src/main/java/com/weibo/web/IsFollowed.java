@@ -38,28 +38,32 @@ public class IsFollowed extends HttpServlet{
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		response.setContentType("text/html;charset=UTF-8");
-		ArrayList<UserInfo> UserList = new ArrayList<UserInfo>();
-		UserInfo userinfo = new UserInfo();
+
 		HttpSession session = request.getSession();
-		userinfo = (UserInfo) session.getAttribute("userinfo");//get current userinfo
-		FriendsDao fDao = new FriendsDao();
+		UserInfo userinfo = (UserInfo) session.getAttribute("userinfo");//get current userinfo
+
 		int currPage = Integer.parseInt(request.getParameter("p"));
 		long counts = 0;
 		int showPageNum = 4;//每页个数
-		UserList = fDao.getFollowed(userinfo.getU_id(),showPageNum,currPage);
+
+		FriendsDao fDao = new FriendsDao();
+		ArrayList<UserInfo> UserList = fDao.getFollowed(userinfo.getU_id(),showPageNum,currPage);
+
 		counts=fDao.countFollowed(userinfo.getU_id());
-		
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
-		Map<String, Object> root = new HashMap<String, Object>();
+
+		Map<String, Object> root = new HashMap<>();
 		root.put("userList", UserList);
 		root.put("totalPages", totalPages);
 		root.put("p", currPage);
+
 		Writer out = response.getWriter();
 		Template template = cfg.getTemplate("FollowedUser.ftl");
 		try {
 			template.process(root,out);
 		} catch (TemplateException e) {
 			WeiboLogger.exception(e);
+			throw new RuntimeException(e);
 		}
 		
 		

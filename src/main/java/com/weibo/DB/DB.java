@@ -87,9 +87,9 @@ public class DB {
 	
 	/**
 	 * execute update sql
-	 * @param strSQL
+	 * @param strSQL: query string
 	 * @param params: prepareStatement parameters
-	 * @return
+	 * @return update line
 	 */
 	public int executeUpdate(final String strSQL, final Object[] params) {
 		getConnection();
@@ -98,8 +98,7 @@ public class DB {
 			for (int i = 0; i < params.length; i++) {
 				state.setObject(i + 1, params[i]);
 			}
-			int updateRow = state.executeUpdate();
-			return updateRow;
+			return state.executeUpdate();
 		} catch (SQLException e) {
 			WeiboLogger.exception(e);
 			return 0;

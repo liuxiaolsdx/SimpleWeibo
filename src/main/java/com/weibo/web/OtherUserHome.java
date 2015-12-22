@@ -27,9 +27,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 public class OtherUserHome extends HttpServlet {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 7126647486691802430L;
 	private Configuration cfg;
 
@@ -80,8 +78,7 @@ public class OtherUserHome extends HttpServlet {
 		
 		//whether is following
 		HttpSession session = request.getSession();
-		UserInfo currtUser = new UserInfo();
-		currtUser = (UserInfo) session.getAttribute("userinfo");
+		UserInfo currtUser = (UserInfo) session.getAttribute("userinfo");
 
 		boolean isFollowing = false;
 		FriendsDao fDao = new FriendsDao();

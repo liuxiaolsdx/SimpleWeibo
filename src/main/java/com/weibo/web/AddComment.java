@@ -9,9 +9,6 @@ import com.weibo.model.*;
 
 public class AddComment extends HttpServlet{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9177281840218145911L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

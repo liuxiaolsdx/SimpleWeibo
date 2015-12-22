@@ -13,9 +13,7 @@ import com.weibo.model.BlogDao;
 import com.weibo.model.UserInfo;
 
 public class ForwardServlet extends HttpServlet {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -6872380779507560827L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -25,8 +23,7 @@ public class ForwardServlet extends HttpServlet {
 		BlogDao bDao = new BlogDao();
 		
 		HttpSession session = request.getSession();
-		UserInfo user = new UserInfo();
-		user = (UserInfo) session.getAttribute("userinfo");
+		UserInfo user = (UserInfo) session.getAttribute("userinfo");
 		
 		int uid =user.getU_id();
 		Blog orgBlog = bDao.getBlogByBid(bid);

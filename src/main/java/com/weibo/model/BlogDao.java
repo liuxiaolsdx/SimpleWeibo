@@ -28,7 +28,7 @@ public class BlogDao {
 		int affectedRows = dbConn.executeUpdate(strSQL, new Object[] { b_content, u_id, b_fid });
 
 		dbConn.closeConn();
-		return affectedRows > 0 ? true : false;
+		return affectedRows > 0;
 	}
 	/**
 	 * get blog by it's bid
@@ -73,7 +73,7 @@ public class BlogDao {
 	public ArrayList<Blog> getAllBlogByUid(int uid, int showPageNum, int currPage) {
 
 		DB db = new DB();
-		ArrayList<Blog> blogList = new ArrayList<Blog>();
+		ArrayList<Blog> blogList = new ArrayList<>();
 		String sql = "SELECT * FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? OR blog.u_id=ANY(SELECT r_fid FROM relationship WHERE r_uid=?) "
 				+ "ORDER BY b_time DESC LIMIT ?,?";
@@ -117,7 +117,7 @@ public class BlogDao {
 	public ArrayList<Blog> getAllMyBlogByUid(int uid, int showPageNum, int currPage) {
 
 		DB db = new DB();
-		ArrayList<Blog> blogList = new ArrayList<Blog>();
+		ArrayList<Blog> blogList = new ArrayList<>();
 		String sql = "SELECT * FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? ORDER BY b_time DESC LIMIT ?,?";
 		// current user and who is following
@@ -217,7 +217,7 @@ public class BlogDao {
 		int affectedRows = dbConn.executeUpdate(strSQL, new Object[] { b_content, uid });
 
 		dbConn.closeConn();
-		return affectedRows > 0 ? true : false;
+		return affectedRows > 0;
 	}
 	/**
 	 * add blog's forward number
@@ -230,12 +230,12 @@ public class BlogDao {
 		String addsql = "update blog set b_fnum = ? where b_id=?";
 		int affectedRows = db.executeUpdate(addsql, new Object[] { oldFNum+1, bid});
 		db.closeConn();
-		return affectedRows > 0 ? true : false;
+		return affectedRows > 0;
 	}
 	/**
 	 * forward blog
-	 * @param blog
-	 * @param oldForwardNum
+	 * @param oldCollectNum
+	 * @param bid
 	 * @param uid
 	 * @return true success
 	 */
@@ -248,7 +248,7 @@ public class BlogDao {
 		int affectedRows = db.executeUpdate(addsql, new Object[] { oldCollectNum+1, bid});
 		int affectedRows2 = db.executeUpdate(insertsql, new Object[] { uid, bid});
 		db.closeConn();
-		return ((affectedRows > 0)&&(affectedRows2 > 0)) ? true : false;
+		return (affectedRows > 0)&&(affectedRows2 > 0);
 		
 	}
 	/**
@@ -276,9 +276,9 @@ public class BlogDao {
 	}
 	/**
 	 * get current user's collect blogs
-	 * @param blog
-	 * @param oldForwardNum
 	 * @param uid
+	 * @param showPageNum
+	 * @param currPage
 	 * @return true success
 	 */
 	public ArrayList<Blog> getCollectBlog(int uid,int showPageNum, int currPage)

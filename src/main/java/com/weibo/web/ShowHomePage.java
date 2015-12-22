@@ -53,8 +53,7 @@ public class ShowHomePage extends HttpServlet {
 		Writer out = response.getWriter();
 		UserInfoDao UserInfoDao = new UserInfoDao();
 		FriendsDao fDao = new FriendsDao();
-		UserInfo UserInfo = new UserInfo();
-		UserInfo = UserInfoDao.getUserInfoByAccount(account);//get user's information
+		UserInfo UserInfo = UserInfoDao.getUserInfoByAccount(account);//get user's information
 		
 		//set number of blogs per page
 		int showPageNum = 4;//每页个数
@@ -92,7 +91,7 @@ public class ShowHomePage extends HttpServlet {
 
 		
 		//put into DataMap
-		Map<String, Object> root = new HashMap<String, Object>();
+		Map<String, Object> root = new HashMap<>();
 		root.put("account", account);
 		root.put("fedcount", fDao.countFollowed(uid));
 		root.put("fincount", fDao.countFollowing(uid));

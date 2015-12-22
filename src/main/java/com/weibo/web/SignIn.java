@@ -27,8 +27,7 @@ public class SignIn extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
-		UserInfo UserInfo = new UserInfo();
-		UserInfo = (UserInfo) session.getAttribute("userinfo");
+//		UserInfo UserInfo = (UserInfo) session.getAttribute("userinfo");
 		
 		if (request.getParameter("account") != null&&request.getParameter("password")!=null) {
 			account = request.getParameter("account");
@@ -45,7 +44,7 @@ public class SignIn extends HttpServlet {
 		if (UserInfoDao.checkAccount(account)) {
 			if (UserInfoDao.checkUser(account, password)) {
 				// get user
-				UserInfo = UserInfoDao.getUserInfoByAccount(account);
+				UserInfo UserInfo = UserInfoDao.getUserInfoByAccount(account);
 				session.setAttribute("userinfo", UserInfo);// put into session attribute
 				session.setAttribute("s_account", account);
 				session.setAttribute("s_password", password);

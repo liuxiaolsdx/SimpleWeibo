@@ -43,7 +43,7 @@ public class UserInfoServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 
-		String account = null;
+		String account;
 		// UserInfo userinfo = new UserInfo();
 		HttpSession session = request.getSession();
 		if (request.getParameter("account") != null) {
@@ -57,7 +57,6 @@ public class UserInfoServlet extends HttpServlet {
 		UserInfo userinfo = userdao.getUserInfoByAccount(account);
 		String originImg = userinfo.getU_img();
 
-		String ImgUrl = null;
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload fileload = new ServletFileUpload(factory);
 
@@ -65,7 +64,7 @@ public class UserInfoServlet extends HttpServlet {
 
 		
 		try {
-			 @SuppressWarnings("unchecked")
+			@SuppressWarnings("unchecked")
 			List<FileItem> items = fileload.parseRequest(request);
 			for (FileItem item : items) {
 
@@ -101,7 +100,7 @@ public class UserInfoServlet extends HttpServlet {
 							WeiboLogger.error("Save to server error!The file name is: " + filename);
 							WeiboLogger.exception(e);
 						}
-						ImgUrl = "face/" + filename.substring(filename.lastIndexOf("\\") + 1);
+						String ImgUrl = "face/" + filename.substring(filename.lastIndexOf("\\") + 1);
 						userinfo.setU_img(ImgUrl);
 						// delete origin img
 						if (originImg != null) {
@@ -115,19 +114,17 @@ public class UserInfoServlet extends HttpServlet {
 				}
 			}
 		} catch (FileUploadException e1) {
-			WeiboLogger.error("Modify user infomation error!The account is: " + account);
+			WeiboLogger.error("Modify user information error! The account is: " + account);
 			WeiboLogger.exception(e1);
 		}
 
 		Writer out = response.getWriter();
 		Map<String, Object> root = new HashMap<>();
 		root.put("account", account);
-		boolean flag = false;
 		if (userdao.updateUserInfo(account, userinfo)) {
-			flag = true;
-			root.put("SetRs", flag);
+			root.put("SetRs", true);
 		} else {
-			root.put("SetRs", flag);
+			root.put("SetRs", false);
 		}
 		Template template = cfg.getTemplate("setUserInfoRs.ftl");
 		try {

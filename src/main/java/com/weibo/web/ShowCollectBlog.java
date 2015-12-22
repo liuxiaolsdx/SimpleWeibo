@@ -38,8 +38,7 @@ public class ShowCollectBlog extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		HttpSession session = request.getSession();
-		UserInfo user = new UserInfo();
-		user = (UserInfo) session.getAttribute("userinfo");
+		UserInfo user = (UserInfo) session.getAttribute("userinfo");
 		
 		int uid = user.getU_id();
 		BlogDao bDao = new BlogDao();
@@ -66,7 +65,7 @@ public class ShowCollectBlog extends HttpServlet {
 		}
 
 		//put into DataMap
-		Map<String, Object> root = new HashMap<String, Object>();
+		Map<String, Object> root = new HashMap<>();
 		root.put("account", user.getU_account());
 		root.put("p", currPage);
 		root.put("totalPages", totalPages);

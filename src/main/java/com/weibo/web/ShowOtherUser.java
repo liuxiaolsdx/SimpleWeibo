@@ -37,20 +37,18 @@ public class ShowOtherUser extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		
-		ArrayList<UserInfo> UserList = new ArrayList<UserInfo>();
-		UserInfo userinfo = new UserInfo();
 		HttpSession session = request.getSession();
-		userinfo = (UserInfo) session.getAttribute("userinfo");//get current userinfo
+		UserInfo userinfo = (UserInfo) session.getAttribute("userinfo");//get current userinfo
 		UserInfoDao userDao = new UserInfoDao();
 		
 		int currPage = Integer.parseInt(request.getParameter("p"));
 		long counts = 0;
 		int showPageNum = 4;//每页个数
-		UserList = userDao.getSomeUser(userinfo.getU_id(),showPageNum,currPage);
+		ArrayList<UserInfo> UserList  = userDao.getSomeUser(userinfo.getU_id(),showPageNum,currPage);
 		counts=userDao.countUnfollowing(userinfo.getU_id());
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		
-		Map<String, Object> root = new HashMap<String, Object>();
+		Map<String, Object> root = new HashMap<>();
 		root.put("userList", UserList);
 		root.put("totalPages", totalPages);
 		root.put("p", currPage);

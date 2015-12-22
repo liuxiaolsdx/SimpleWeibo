@@ -26,7 +26,7 @@ public class CommentDao {
 		int affectedRows = dbConn.executeUpdate(strSQL, new Object[] { c_content, u_id, b_id });
 
 		dbConn.closeConn();
-		return affectedRows > 0 ? true : false;
+		return affectedRows > 0;
 	}
 	/**
 	 * Discard!!
@@ -39,7 +39,7 @@ public class CommentDao {
 	public ArrayList<Comment> getAllCommentsByBid(int bid, int showPageNum, int currPage) {
 
 		DB db = new DB();
-		ArrayList<Comment> commentList = new ArrayList<Comment>();
+		ArrayList<Comment> commentList = new ArrayList<>();
 		String sql = "SELECT * FROM comments LEFT JOIN user ON comments.u_id=user.u_id "
 				+ "WHERE comments.b_id = ? ORDER BY c_time DESC LIMIT ?,?";
 		
@@ -71,7 +71,7 @@ public class CommentDao {
 	public ArrayList<Comment> getAllCommentsByBid(int bid) {
 
 		DB db = new DB();
-		ArrayList<Comment> commentList = new ArrayList<Comment>();
+		ArrayList<Comment> commentList = new ArrayList<>();
 		String sql = "SELECT * FROM comments LEFT JOIN user ON comments.u_id=user.u_id "
 				+ "WHERE comments.b_id = ? ORDER BY c_time ASC ";
 		

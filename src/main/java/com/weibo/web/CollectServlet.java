@@ -27,8 +27,7 @@ public class CollectServlet extends HttpServlet{
 		BlogDao bDao = new BlogDao();
 		
 		HttpSession session = request.getSession();
-		UserInfo user = new UserInfo();
-		user = (UserInfo) session.getAttribute("userinfo");
+		UserInfo user = (UserInfo) session.getAttribute("userinfo");
 		
 		int uid =user.getU_id();
 		Blog blog=bDao.getBlogByBid(bid);

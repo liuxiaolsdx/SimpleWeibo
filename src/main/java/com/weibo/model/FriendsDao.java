@@ -21,7 +21,7 @@ public class FriendsDao {
 		if(!isFollowing(uid,fid))
 			rs = db.executeUpdate(sql, new Object[] { uid, fid });
 		db.closeConn();
-		return rs>0 ? true:false;
+		return rs>0;
 	}
 	/**
 	 * uid is (or not) following fid
@@ -34,10 +34,7 @@ public class FriendsDao {
 		String sql = "select * from relationship where r_uid=? and r_fid=?";
 		ResultSet rs = db.executeQuery(sql, new Object[] { uid, fid });
 		try {
-			if (rs.next())
-				return true;
-			else
-				return false;
+			return rs.next();
 		} catch (SQLException e) {
 			WeiboLogger.exception(e);
 			return false;
@@ -57,7 +54,7 @@ public class FriendsDao {
 		String sql = "delete from relationship where r_uid=? and r_fid=?";
 		int rs = db.executeUpdate(sql, new Object[] { uid, fid });
 		db.closeConn();
-		return rs>0?true:false;
+		return rs>0;
 	}
 	/**
 	 * count user's fans/followed
@@ -112,7 +109,7 @@ public class FriendsDao {
 	 */
 	public ArrayList<UserInfo> getFollowing(int uid,int showPageNum,int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<UserInfo>();
+		ArrayList<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_id=any(select r_fid from relationship where r_uid=?)"
 				+ " limit ?,?";
 		//beside current user and who has followed
@@ -148,7 +145,7 @@ public class FriendsDao {
 	 */
 	public ArrayList<UserInfo> getFollowed(int uid,int showPageNum,int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<UserInfo>();
+		ArrayList<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_id=any(select r_uid from relationship where r_fid=?)"
 				+ " limit ?,?";
 		//beside current user and who has followed

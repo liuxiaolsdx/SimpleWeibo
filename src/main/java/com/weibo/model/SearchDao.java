@@ -11,7 +11,7 @@ public class SearchDao {
 	
 	public ArrayList<UserInfo> getSearchUser(final String search,int showPageNum,int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<UserInfo>();
+		ArrayList<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_account like ? or u_nickname like ? limit ?,?";
 		//beside current user and who has followed
 		ResultSet rs = db.executeQuery(sql,new Object[]{"%"+search+"%","%"+search+"%",showPageNum*(currPage-1),showPageNum});

@@ -18,7 +18,7 @@ public class SignOut extends HttpServlet{
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		request.getSession().invalidate();
-		setCookie(request, response, null);
+		setCookie(response);
 		response.sendRedirect("index.html");
 
 	}
@@ -28,8 +28,8 @@ public class SignOut extends HttpServlet{
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	public void setCookie(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo)
-	throws ServletException, IOException {
+
+	public void setCookie(HttpServletResponse response) throws ServletException, IOException {
         Cookie c1 = new Cookie("userName","");
         Cookie c2 = new Cookie("password", "");
         c1.setMaxAge(0) ;

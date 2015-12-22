@@ -34,7 +34,7 @@ public class ShowUserInfoServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		String account=null;
+		String account;
 		HttpSession session = request.getSession();
 		if( request.getParameter("account") != null){
 			account = request.getParameter("account");
