@@ -60,7 +60,7 @@ public class UserInfoServlet extends HttpServlet {
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload fileload = new ServletFileUpload(factory);
 
-		fileload.setSizeMax(4194304);
+		fileload.setSizeMax(4*1024*1024);
 
 		
 		try {
@@ -70,18 +70,18 @@ public class UserInfoServlet extends HttpServlet {
 
 				if (item.isFormField()) {
 					switch (item.getFieldName()) {
-					case "nickname":
-						userinfo.setU_nickname(item.getString("utf-8"));
-						break;
-					case "name":
-						userinfo.setU_name(item.getString("utf-8"));
-						break;
-					case "sex":
-						userinfo.setU_sex(item.getString("utf-8"));
-						break;
-					case "content":
-						userinfo.setU_sign(item.getString("utf-8"));
-						break;
+						case "nickname":
+							userinfo.setU_nickname(item.getString("utf-8"));
+							break;
+						case "name":
+							userinfo.setU_name(item.getString("utf-8"));
+							break;
+						case "sex":
+							userinfo.setU_sex(item.getString("utf-8"));
+							break;
+						case "content":
+							userinfo.setU_sign(item.getString("utf-8"));
+							break;
 
 					}
 
