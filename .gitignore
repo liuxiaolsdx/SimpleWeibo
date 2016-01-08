@@ -2,6 +2,7 @@
 .settings
 .settings/*
 .DS_Store
+.idea/
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath

@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>登录微博</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SimpleWeibo Sign In Page">
+    <meta name="author" content="Sean">
+    <link rel="icon" href="./img/Skype.ico">
+
+    <title>登录微博</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/signin.css" rel="stylesheet">
+
 </head>
 <body>
-<div align="center">
-    <form action="SignIn.do" method="post">   
-    <table>
-    <tr>
-    <td>账号：<input name="account" type="text"/></td>
-    </tr>
-    <tr><td>密码：<input name="password" type="password"/></td></tr>
-     <tr>
-    <td ><input type="submit" value="登录"/>
-    <input type="reset" value="取消"/></td>
-    </tr>
-    </table>
+<div class="container">
+
+    <form action="SignIn.do" method="post" class="form-signin">
+        <h2 class="form-signin-heading">请登录</h2>
+
+        <label for="inputUserName" class="sr-only">用户名</label>
+        <input name="account" type="text" id="inputUserName" class="form-control" placeholder="用户名" required autofocus>
+
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录"/>
+        <input class="btn btn-lg btn-primary btn-block" type="reset" value="取消"/>
+
+
     </form>
 </div>
 </body>
