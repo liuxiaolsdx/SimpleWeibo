@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -47,7 +48,7 @@ public class IsFollowed extends HttpServlet{
 		int showPageNum = 4;//每页个数
 
 		FriendsDao fDao = new FriendsDao();
-		ArrayList<UserInfo> UserList = fDao.getFollowed(userinfo.getU_id(),showPageNum,currPage);
+		List<UserInfo> UserList = fDao.getFollowed(userinfo.getU_id(),showPageNum,currPage);
 
 		counts=fDao.countFollowed(userinfo.getU_id());
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);

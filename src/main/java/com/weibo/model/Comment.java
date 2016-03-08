@@ -13,7 +13,7 @@ public class Comment {
 	private String nickname;
 
 	public Comment() {
-	};
+	}
 
 	public Comment(int cid, int uid, int bid, String content, Timestamp time) {
 		this.cid = cid;
