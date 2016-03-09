@@ -3,6 +3,7 @@ package com.weibo.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.weibo.DB.DB;
 import com.weibo.util.WeiboLogger;
@@ -36,10 +37,10 @@ public class CommentDao {
 	 * @param currPage: current page
 	 * @return
 	 */
-	public ArrayList<Comment> getAllCommentsByBid(int bid, int showPageNum, int currPage) {
+	public List<Comment> getAllCommentsByBid(int bid, int showPageNum, int currPage) {
 
 		DB db = new DB();
-		ArrayList<Comment> commentList = new ArrayList<>();
+		List<Comment> commentList = new ArrayList<>();
 		String sql = "SELECT * FROM comments LEFT JOIN user ON comments.u_id=user.u_id "
 				+ "WHERE comments.b_id = ? ORDER BY c_time DESC LIMIT ?,?";
 		
@@ -68,10 +69,10 @@ public class CommentDao {
 	 * @param bid: blog's id ,reference to table blog
 	 * @return ArrayList<Comment>
 	 */
-	public ArrayList<Comment> getAllCommentsByBid(int bid) {
+	public List<Comment> getAllCommentsByBid(int bid) {
 
 		DB db = new DB();
-		ArrayList<Comment> commentList = new ArrayList<>();
+		List<Comment> commentList = new ArrayList<>();
 		String sql = "SELECT * FROM comments LEFT JOIN user ON comments.u_id=user.u_id "
 				+ "WHERE comments.b_id = ? ORDER BY c_time ASC ";
 		

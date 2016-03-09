@@ -3,6 +3,7 @@ package com.weibo.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.weibo.DB.DB;
 import com.weibo.util.WeiboLogger;
@@ -134,11 +135,11 @@ public class UserInfoDao {
 	 * @param uid
 	 * @param showPageNum
 	 * @param currPage
-	 * @return ArrayList<UserInfo>
+	 * @return List<UserInfo>
 	 */
-	public ArrayList<UserInfo> getSomeUser(int uid,int showPageNum,int currPage) {
+	public List<UserInfo> getSomeUser(int uid, int showPageNum, int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<>();
+		List<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_id<>? and u_id not in(select r_fid from relationship where r_uid=?)"
 				+ "order by rand() limit ?,?";
 		//beside current user and who has followed
@@ -155,7 +156,6 @@ public class UserInfoDao {
 				user.setU_name(rs.getString("u_name"));
 				user.setU_date(rs.getString("u_date"));
 				userList.add(user);
-//				counts++;
 			}
 			return userList;
 		} catch (SQLException e) {

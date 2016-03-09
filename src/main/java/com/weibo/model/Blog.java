@@ -2,6 +2,7 @@ package com.weibo.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Blog {
 	
@@ -14,7 +15,7 @@ public class Blog {
 	private String account;
 	private String nickname;
 	private String u_img;
-	private ArrayList<Comment> commentList;
+	private List<Comment> commentList;
 	private Blog blog;
 	
 	private Timestamp time;
@@ -23,7 +24,7 @@ public class Blog {
 	}
 
 	public Blog(int bid,int uid,int fnum,int fid,int cnum, String content, Timestamp time, String account,String nickname,String u_img
-			,ArrayList<Comment> commentList, Blog blog) {
+			,List<Comment> commentList, Blog blog) {
 		this.bid = bid;
 		this.uid = uid;
 		this.fnum = fnum;
@@ -106,10 +107,10 @@ public class Blog {
 		return fnum;
 	}
 	
-	public void setCommentList(ArrayList<Comment> comments){
+	public void setCommentList(List<Comment> comments){
 		this.commentList = comments;
 	}
-	public ArrayList<Comment> getCommentList(){
+	public List<Comment> getCommentList(){
 		return commentList; 
 	}
 	public void setContentLink(){

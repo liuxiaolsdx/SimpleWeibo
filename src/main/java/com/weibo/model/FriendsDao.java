@@ -108,9 +108,9 @@ public class FriendsDao {
 	 * @param currPage : current page
 	 * @return ArrayList<UserInfo> following
 	 */
-	public ArrayList<UserInfo> getFollowing(int uid,int showPageNum,int currPage) {
+	public List<UserInfo> getFollowing(int uid,int showPageNum,int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<>();
+		List<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_id=any(select r_fid from relationship where r_uid=?)"
 				+ " limit ?,?";
 		//beside current user and who has followed
@@ -127,7 +127,6 @@ public class FriendsDao {
 				user.setU_name(rs.getString(8));
 				user.setU_date(rs.getString(9));
 				userList.add(user);
-//				counts++;
 			}
 			return userList;
 		} catch (SQLException e) {

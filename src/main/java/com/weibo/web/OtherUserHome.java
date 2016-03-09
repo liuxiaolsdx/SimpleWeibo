@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -61,14 +62,14 @@ public class OtherUserHome extends HttpServlet {
 		for(Blog b:blogList){
 			Blog orgblog = b.getBlog();
 			if(orgblog!=null){
-				ArrayList<Comment> orgCommentList = cDao.getAllCommentsByBid(orgblog.getBid());
+				List<Comment> orgCommentList = cDao.getAllCommentsByBid(orgblog.getBid());
 				orgblog.setCommentList(orgCommentList);
 				orgblog.setContentLink();
 				for(Comment c:orgCommentList){
 					c.setContentLink();
 				}
 			}
-			ArrayList<Comment> CommentList = cDao.getAllCommentsByBid(b.getBid());
+			List<Comment> CommentList = cDao.getAllCommentsByBid(b.getBid());
 			b.setCommentList(CommentList);
 			b.setContentLink();
 			for(Comment c:CommentList){

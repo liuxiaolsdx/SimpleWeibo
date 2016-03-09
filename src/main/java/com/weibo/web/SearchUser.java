@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -46,7 +47,7 @@ public class SearchUser extends HttpServlet {
 		
 		if(request.getParameter("p")!=null)
 			currPage =Integer.parseInt(request.getParameter("p"));
-		ArrayList<UserInfo> UserList = sDao.getSearchUser(search,showPageNum,currPage);
+		List<UserInfo> UserList = sDao.getSearchUser(search,showPageNum,currPage);
 		counts=sDao.countSearchUser(search);
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -56,7 +57,7 @@ public class ShowCollectBlog extends HttpServlet {
 		//get comments
 		CommentDao cDao = new CommentDao();
 		for(Blog b:CollectBlogList){
-			ArrayList<Comment> CommentList = cDao.getAllCommentsByBid(b.getBid());
+			List<Comment> CommentList = cDao.getAllCommentsByBid(b.getBid());
 			b.setCommentList(CommentList);
 			b.setContentLink();
 			for(Comment c:CommentList){

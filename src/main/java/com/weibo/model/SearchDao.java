@@ -3,15 +3,16 @@ package com.weibo.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.weibo.DB.DB;
 import com.weibo.util.WeiboLogger;
 
 public class SearchDao {
 	
-	public ArrayList<UserInfo> getSearchUser(final String search,int showPageNum,int currPage) {
+	public List<UserInfo> getSearchUser(final String search, int showPageNum, int currPage) {
 		DB db = new DB();
-		ArrayList<UserInfo> userList = new ArrayList<>();
+		List<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_account like ? or u_nickname like ? limit ?,?";
 		//beside current user and who has followed
 		ResultSet rs = db.executeQuery(sql,new Object[]{"%"+search+"%","%"+search+"%",showPageNum*(currPage-1),showPageNum});

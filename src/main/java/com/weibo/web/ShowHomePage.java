@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -73,7 +75,7 @@ public class ShowHomePage extends HttpServlet {
 		for(Blog b:blogList){
 			Blog orgblog = b.getBlog();
 			if(orgblog!=null){
-				ArrayList<Comment> orgCommentList = cDao.getAllCommentsByBid(orgblog.getBid());
+				List<Comment> orgCommentList = cDao.getAllCommentsByBid(orgblog.getBid());
 				orgblog.setCommentList(orgCommentList);
 				orgblog.setContentLink();
 				
@@ -81,7 +83,7 @@ public class ShowHomePage extends HttpServlet {
 					c.setContentLink();
 				}
 			}
-			ArrayList<Comment> CommentList = cDao.getAllCommentsByBid(b.getBid());
+			List<Comment> CommentList = cDao.getAllCommentsByBid(b.getBid());
 			b.setCommentList(CommentList);
 			b.setContentLink();
 			for(Comment c:CommentList){

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -47,7 +48,7 @@ public class IsFollowing extends HttpServlet{
 		int currPage = Integer.parseInt(request.getParameter("p"));
 		long counts = 0;
 		int showPageNum = 4;//每页个数
-		ArrayList<UserInfo> UserList = fDao.getFollowing(userinfo.getU_id(),showPageNum,currPage);
+		List<UserInfo> UserList = fDao.getFollowing(userinfo.getU_id(),showPageNum,currPage);
 		counts=fDao.countFollowing(userinfo.getU_id());
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		
