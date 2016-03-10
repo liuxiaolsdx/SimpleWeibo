@@ -16,10 +16,9 @@ import java.util.*;
 import javax.servlet.*;
 
 public class ShowUserInfoServlet extends HttpServlet {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 8090767439467839828L;
+
 	private Configuration cfg;
 
 	public void init() throws ServletException {

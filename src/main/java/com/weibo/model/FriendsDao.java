@@ -106,7 +106,7 @@ public class FriendsDao {
 	 * @param uid :current user
 	 * @param showPageNum : number of per page
 	 * @param currPage : current page
-	 * @return ArrayList<UserInfo> following
+	 * @return List<UserInfo> following
 	 */
 	public List<UserInfo> getFollowing(int uid,int showPageNum,int currPage) {
 		DB db = new DB();
@@ -141,7 +141,7 @@ public class FriendsDao {
 	 * @param uid :current user
 	 * @param showPageNum : number of per page
 	 * @param currPage : current page
-	 * @return ArrayList<UserInfo> followed
+	 * @return List<UserInfo> followed
 	 */
 	public List<UserInfo> getFollowed(int uid, int showPageNum, int currPage) {
 		DB db = new DB();

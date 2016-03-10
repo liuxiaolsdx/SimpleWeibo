@@ -8,9 +8,7 @@ import javax.servlet.http.*;
 import com.weibo.model.UserInfoDao;
 
 public class SignUp extends HttpServlet {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -968364510897096777L;
 	private String account;
 	private String password;

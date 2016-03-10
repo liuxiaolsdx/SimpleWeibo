@@ -21,10 +21,8 @@ import com.weibo.util.WeiboLogger;
 
 public class ShowOtherUser extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 97186083021729235L;
+
 	private Configuration cfg;
 
 	public void init() throws ServletException {

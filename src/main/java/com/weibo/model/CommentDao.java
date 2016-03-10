@@ -31,7 +31,7 @@ public class CommentDao {
 	}
 	/**
 	 * Discard!!
-	 * get comments ArrayList by blog's id
+	 * get comments List by blog's id
 	 * @param bid: blog's id ,reference to table blog
 	 * @param showPageNum: show the number of comments in each blog
 	 * @param currPage: current page
@@ -65,9 +65,9 @@ public class CommentDao {
 		}
 	}
 	/**
-	 * get comments ArrayList by blog's id
+	 * get comments List by blog's id
 	 * @param bid: blog's id ,reference to table blog
-	 * @return ArrayList<Comment>
+	 * @return List<Comment>
 	 */
 	public List<Comment> getAllCommentsByBid(int bid) {
 

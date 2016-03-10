@@ -66,7 +66,7 @@ public class ShowHomePage extends HttpServlet {
 		//get information of blogs
 		int uid=UserInfo.getU_id();
 		BlogDao bDao = new BlogDao();
-		ArrayList<Blog> blogList = bDao.getAllBlogByUid(uid, showPageNum, currPage);
+		List<Blog> blogList = bDao.getAllBlogByUid(uid, showPageNum, currPage);
 		long counts = bDao.getAllBlogSum(uid);
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		

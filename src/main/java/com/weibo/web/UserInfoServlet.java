@@ -24,9 +24,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class UserInfoServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 9119172205604783075L;
 
 	private Configuration cfg;

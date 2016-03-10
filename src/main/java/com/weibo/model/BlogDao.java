@@ -3,6 +3,7 @@ package com.weibo.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 //import java.sql.Timestamp;
 
@@ -68,12 +69,12 @@ public class BlogDao {
 	 * @param uid: current usr's id
 	 * @param showPageNum: the mumber of blogs per page
 	 * @param currPage: current page
-	 * @return ArrayList<Blog>
+	 * @return List<Blog>
 	 */
-	public ArrayList<Blog> getAllBlogByUid(int uid, int showPageNum, int currPage) {
+	public List<Blog> getAllBlogByUid(int uid, int showPageNum, int currPage) {
 
 		DB db = new DB();
-		ArrayList<Blog> blogList = new ArrayList<>();
+		List<Blog> blogList = new ArrayList<>();
 		String sql = "SELECT * FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? OR blog.u_id=ANY(SELECT r_fid FROM relationship WHERE r_uid=?) "
 				+ "ORDER BY b_time DESC LIMIT ?,?";
@@ -112,12 +113,12 @@ public class BlogDao {
 	 * @param uid: current usr's id
 	 * @param showPageNum: the mumber of blogs per page
 	 * @param currPage: current page
-	 * @return ArrayList<Blog>
+	 * @return List<Blog>
 	 */
-	public ArrayList<Blog> getAllMyBlogByUid(int uid, int showPageNum, int currPage) {
+	public List<Blog> getAllMyBlogByUid(int uid, int showPageNum, int currPage) {
 
 		DB db = new DB();
-		ArrayList<Blog> blogList = new ArrayList<>();
+		List<Blog> blogList = new ArrayList<>();
 		String sql = "SELECT * FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? ORDER BY b_time DESC LIMIT ?,?";
 		// current user and who is following
@@ -281,9 +282,9 @@ public class BlogDao {
 	 * @param currPage
 	 * @return true success
 	 */
-	public ArrayList<Blog> getCollectBlog(int uid,int showPageNum, int currPage)
+	public List<Blog> getCollectBlog(int uid,int showPageNum, int currPage)
 	{
-		ArrayList<Blog> blogList = new ArrayList<>();
+		List<Blog> blogList = new ArrayList<>();
 		
 		DB db = new DB();
 		String sql = "SELECT * FROM collection LEFT JOIN blog ON collection.b_id=blog.b_id LEFT JOIN user ON blog.u_id=user.u_id "

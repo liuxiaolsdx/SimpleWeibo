@@ -43,6 +43,7 @@ public class ShowCollectBlog extends HttpServlet {
 		
 		int uid = user.getU_id();
 		BlogDao bDao = new BlogDao();
+
 		//set number of blogs per page
 		int showPageNum = 4;//每页个数
 		int currPage = 1;
@@ -50,7 +51,7 @@ public class ShowCollectBlog extends HttpServlet {
 			currPage = Integer.parseInt(request.getParameter("p"));
 
 		
-		ArrayList <Blog> CollectBlogList = bDao.getCollectBlog(uid, showPageNum, currPage);
+		List <Blog> CollectBlogList = bDao.getCollectBlog(uid, showPageNum, currPage);
 		long counts = bDao.getAllCollectBlogSum(uid);
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		

@@ -14,10 +14,6 @@ import com.weibo.model.UserInfo;
 
 public class CollectServlet extends HttpServlet{
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2237692493657555760L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

@@ -53,7 +53,7 @@ public class OtherUserHome extends HttpServlet {
 		if(request.getParameter("p") != null)
 			currPage = Integer.parseInt(request.getParameter("p"));
 		//get blog
-		ArrayList<Blog> blogList = bDao.getAllMyBlogByUid(user.getU_id(), showPageNum, currPage);
+		List<Blog> blogList = bDao.getAllMyBlogByUid(user.getU_id(), showPageNum, currPage);
 		long counts = bDao.getAllMyBlogSum(user.getU_id());
 		int totalPages = (int)counts/showPageNum + ((counts%showPageNum)>0?1:0);
 		

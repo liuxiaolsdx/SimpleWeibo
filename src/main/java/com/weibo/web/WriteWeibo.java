@@ -9,9 +9,6 @@ import com.weibo.model.*;
 
 public class WriteWeibo extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6509141941469347992L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

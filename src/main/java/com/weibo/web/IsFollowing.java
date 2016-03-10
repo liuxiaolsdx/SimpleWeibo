@@ -23,10 +23,9 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 public class IsFollowing extends HttpServlet{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4659144993277055611L;
+
 	private Configuration cfg;
 
 	public void init() throws ServletException {
