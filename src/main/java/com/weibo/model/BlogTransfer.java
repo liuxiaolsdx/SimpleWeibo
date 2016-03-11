@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class BlogTransfer {
 
-	static Pattern r_pattern = Pattern.compile("@([^@^\\s^:]{1,})([\\s\\:\\,\\;]{0,1})");//
+	static Pattern r_pattern = Pattern.compile("@([^@^\\s:;,]+)");//@([^@^\s:]+)([\s:,;]?)
 
 	public static String GenerateLinks(String blog) {
 		StringBuilder newBlog = new StringBuilder();
@@ -13,9 +13,9 @@ public class BlogTransfer {
 		Matcher matchr = r_pattern.matcher(blog);
 		while (matchr.find()) {
 			String orgStr = matchr.group();
-			String str = orgStr.substring(1, orgStr.length()).trim();
+			String str = orgStr.substring(1, orgStr.length()).trim();//去掉"@"
 
-			newBlog.append(blog.substring(lastIdx, matchr.start()));
+			newBlog.append(blog.substring(lastIdx, matchr.start()+1));//获得"@"之前的文本,包括@
 
 			UserInfoDao uDao = new UserInfoDao();
 			UserInfo user = uDao.getUserInfoByAccount(str);
@@ -25,7 +25,7 @@ public class BlogTransfer {
 				newBlog.append(str.trim());
 				newBlog.append("</a>");
 			} else {
-				newBlog.append(orgStr);
+				newBlog.append(str);
 			}
 			lastIdx = matchr.end();
 
