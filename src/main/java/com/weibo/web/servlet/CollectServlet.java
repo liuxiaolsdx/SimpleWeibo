@@ -1,4 +1,4 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.IOException;
 
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.weibo.model.Blog;
-import com.weibo.model.BlogDao;
-import com.weibo.model.UserInfo;
+import com.weibo.model.entity.Blog;
+import com.weibo.model.dao.BlogDao;
+import com.weibo.model.entity.UserInfo;
 
 public class CollectServlet extends HttpServlet{
 

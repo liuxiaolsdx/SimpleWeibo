@@ -1,7 +1,8 @@
-package com.weibo.model;
+package com.weibo.model.entity;
+
+import com.weibo.model.BlogTransfer;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Blog {
@@ -114,7 +115,7 @@ public class Blog {
 		return commentList; 
 	}
 	public void setContentLink(){
-		this.content=BlogTransfer.GenerateLinks(content);
+		this.content= BlogTransfer.GenerateLinks(content);
 	}
 
 	public void setBlog(Blog blog){

@@ -11,13 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import static org.easymock.EasyMock.*;
 
+import com.weibo.web.servlet.SignIn;
 import org.easymock.IMocksControl;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.weibo.model.UserInfo;
-//import com.weibo.model.UserInfoDao;
+import com.weibo.model.entity.UserInfo;
+//import com.weibo.model.dao.UserInfoDao;
 
 public class SignInServletTest {
 

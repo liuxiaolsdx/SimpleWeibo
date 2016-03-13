@@ -1,11 +1,11 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.weibo.model.UserInfoDao;
+import com.weibo.model.dao.UserInfoDao;
 
 public class SignUp extends HttpServlet {
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.weibo.model.Blog;
+import com.weibo.model.entity.Blog;
 
 public class BlogTest {
 	private Blog blog = new Blog();

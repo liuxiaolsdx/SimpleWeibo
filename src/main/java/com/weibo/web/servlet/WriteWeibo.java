@@ -1,11 +1,13 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.weibo.model.*;
+import com.weibo.model.dao.BlogDao;
+import com.weibo.model.entity.Blog;
+import com.weibo.model.entity.UserInfo;
 
 public class WriteWeibo extends HttpServlet {
 

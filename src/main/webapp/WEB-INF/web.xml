@@ -5,27 +5,27 @@
 	version="3.1">
 	<servlet>
 		<servlet-name>WriteWeibo</servlet-name>
-		<servlet-class>com.weibo.web.WriteWeibo</servlet-class>
+		<servlet-class>com.weibo.web.servlet.WriteWeibo</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SignUp</servlet-name>
-		<servlet-class>com.weibo.web.SignUp</servlet-class>
+		<servlet-class>com.weibo.web.servlet.SignUp</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SignIn</servlet-name>
-		<servlet-class>com.weibo.web.SignIn</servlet-class>
+		<servlet-class>com.weibo.web.servlet.SignIn</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>setUserInfo</servlet-name>
-		<servlet-class>com.weibo.web.UserInfoServlet</servlet-class>
+		<servlet-class>com.weibo.web.servlet.UserInfoServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>showUserInfo</servlet-name>
-		<servlet-class>com.weibo.web.ShowUserInfoServlet</servlet-class>
+		<servlet-class>com.weibo.web.servlet.ShowUserInfoServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SignOut</servlet-name>
-		<servlet-class>com.weibo.web.SignOut</servlet-class>
+		<servlet-class>com.weibo.web.servlet.SignOut</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>freemarker</servlet-name>
@@ -70,51 +70,51 @@
 	</servlet>
 	<servlet>
 		<servlet-name>showOtherUser</servlet-name>
-		<servlet-class>com.weibo.web.ShowOtherUser</servlet-class>
+		<servlet-class>com.weibo.web.servlet.ShowOtherUser</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>following</servlet-name>
-		<servlet-class>com.weibo.web.Following</servlet-class>
+		<servlet-class>com.weibo.web.servlet.Following</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>isfollowing</servlet-name>
-		<servlet-class>com.weibo.web.IsFollowing</servlet-class>
+		<servlet-class>com.weibo.web.servlet.IsFollowing</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>isfollowed</servlet-name>
-		<servlet-class>com.weibo.web.IsFollowed</servlet-class>
+		<servlet-class>com.weibo.web.servlet.IsFollowed</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>deleteFollowing</servlet-name>
-		<servlet-class>com.weibo.web.DeleteFollowing</servlet-class>
+		<servlet-class>com.weibo.web.servlet.DeleteFollowing</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>ShowHomePage</servlet-name>
-		<servlet-class>com.weibo.web.ShowHomePage</servlet-class>
+		<servlet-class>com.weibo.web.servlet.ShowHomePage</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>searchuser</servlet-name>
-		<servlet-class>com.weibo.web.SearchUser</servlet-class>
+		<servlet-class>com.weibo.web.servlet.SearchUser</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>AddComment</servlet-name>
-		<servlet-class>com.weibo.web.AddComment</servlet-class>
+		<servlet-class>com.weibo.web.servlet.AddComment</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>otheruser</servlet-name>
-		<servlet-class>com.weibo.web.OtherUserHome</servlet-class>
+		<servlet-class>com.weibo.web.servlet.OtherUserHome</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>forward</servlet-name>
-		<servlet-class>com.weibo.web.ForwardServlet</servlet-class>
+		<servlet-class>com.weibo.web.servlet.ForwardServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>collect</servlet-name>
-		<servlet-class>com.weibo.web.CollectServlet</servlet-class>
+		<servlet-class>com.weibo.web.servlet.CollectServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>showcollectblog</servlet-name>
-		<servlet-class>com.weibo.web.ShowCollectBlog</servlet-class>
+		<servlet-class>com.weibo.web.servlet.ShowCollectBlog</servlet-class>
 	</servlet>
 
 
@@ -199,7 +199,7 @@
 	<!-- filter start -->
 	<filter>
 		<filter-name>CharsetEncodingFilter</filter-name>
-		<filter-class>com.weibo.web.CharsetEncodingFilter</filter-class>
+		<filter-class>com.weibo.web.filter.CharsetEncodingFilter</filter-class>
 	</filter>
 
 	<filter-mapping>

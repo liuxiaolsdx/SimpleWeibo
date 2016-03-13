@@ -1,4 +1,4 @@
-package com.weibo.model;
+package com.weibo.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.weibo.DB.DB;
+import com.weibo.model.entity.UserInfo;
 import com.weibo.util.WeiboLogger;
 
 public class SearchDao {

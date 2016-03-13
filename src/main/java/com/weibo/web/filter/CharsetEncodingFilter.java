@@ -1,4 +1,4 @@
-package com.weibo.web;
+package com.weibo.web.filter;
 
 import java.io.IOException;
 import javax.servlet.*;

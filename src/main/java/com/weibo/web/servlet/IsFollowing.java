@@ -1,8 +1,7 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.weibo.model.FriendsDao;
-import com.weibo.model.UserInfo;
+import com.weibo.model.dao.FriendsDao;
+import com.weibo.model.entity.UserInfo;
 import com.weibo.util.WeiboLogger;
 
 import freemarker.template.Configuration;

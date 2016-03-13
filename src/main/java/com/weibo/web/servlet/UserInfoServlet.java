@@ -1,4 +1,4 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,12 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.weibo.model.dao.UserInfoDao;
+import com.weibo.model.entity.UserInfo;
 import freemarker.template.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.weibo.model.*;
 import com.weibo.util.WeiboLogger;
 
 import org.apache.commons.fileupload.FileItem;

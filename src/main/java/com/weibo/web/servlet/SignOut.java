@@ -1,11 +1,9 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
-import com.weibo.model.UserInfo;
 
 public class SignOut extends HttpServlet{
 	

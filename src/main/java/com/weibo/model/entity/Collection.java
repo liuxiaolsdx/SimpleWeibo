@@ -1,4 +1,4 @@
-package com.weibo.model;
+package com.weibo.model.entity;
 
 
 public class Collection {

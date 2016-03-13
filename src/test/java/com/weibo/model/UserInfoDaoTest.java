@@ -2,11 +2,11 @@ package com.weibo.model;
 
 import static org.junit.Assert.*;
 
+import com.weibo.model.dao.UserInfoDao;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.weibo.model.UserInfo;
-import com.weibo.model.UserInfoDao;
+import com.weibo.model.entity.UserInfo;
 
 public class UserInfoDaoTest {
 	

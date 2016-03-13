@@ -1,16 +1,16 @@
-package com.weibo.model;
+package com.weibo.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//import java.sql.Timestamp;
-
 import com.weibo.DB.DB;
+import com.weibo.model.entity.Blog;
 import com.weibo.util.WeiboLogger;
 
 public class BlogDao {
+	private DB db = new DB();
 	/**
 	 * add blog into table blog
 	 * @param blog: blog object
@@ -72,41 +72,12 @@ public class BlogDao {
 	 * @return List<Blog>
 	 */
 	public List<Blog> getAllBlogByUid(int uid, int showPageNum, int currPage) {
-
-		DB db = new DB();
-		List<Blog> blogList = new ArrayList<>();
 		String sql = "SELECT * FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? OR blog.u_id=ANY(SELECT r_fid FROM relationship WHERE r_uid=?) "
 				+ "ORDER BY b_time DESC LIMIT ?,?";
 		// current user and who is following
 		ResultSet rs = db.executeQuery(sql, new Object[] { uid, uid, showPageNum * (currPage - 1), showPageNum });
-		try {
-			while (rs.next()) {
-				Blog blog = new Blog();
-				//judge the blog whether forward
-				int fid=rs.getInt("b_fid");
-				if(fid!=0){
-					Blog OrgBlog = getBlogByBid(fid);//if it is a 'forwardblog' then get original blog
-					blog.setBlog(OrgBlog);
-				}
-				blog.setBid(rs.getInt("b_id"));
-				blog.setUid(rs.getInt("u_id"));
-				blog.setContent(rs.getString("b_content"));
-				blog.setTime(rs.getTimestamp("b_time"));
-				blog.setAccount(rs.getString("u_account"));
-				blog.setNickname(rs.getString("u_nickname"));
-				blog.setFnum(rs.getInt("b_fnum"));
-				blog.setU_img(rs.getString("u_img"));
-				blog.setCnum(rs.getInt("b_cnum"));
-				blogList.add(blog);
-			}
-			return blogList;
-		} catch (SQLException e) {
-			WeiboLogger.exception(e);
-			return null;
-		} finally {
-			db.closeConn();
-		}
+		return mapBlogList(rs);
 	}
 	/**
 	 * get all my blog 
@@ -117,39 +88,11 @@ public class BlogDao {
 	 */
 	public List<Blog> getAllMyBlogByUid(int uid, int showPageNum, int currPage) {
 
-		DB db = new DB();
-		List<Blog> blogList = new ArrayList<>();
 		String sql = "SELECT * FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? ORDER BY b_time DESC LIMIT ?,?";
 		// current user and who is following
 		ResultSet rs = db.executeQuery(sql, new Object[] { uid, showPageNum * (currPage - 1), showPageNum });
-		try {
-			while (rs.next()) {
-				Blog blog = new Blog();
-				//judge the blog whether forward
-				int fid=rs.getInt("b_fid");
-				if(fid!=0){
-					Blog OrgBlog = getBlogByBid(fid);//if it is a 'forwardblog' then get original blog
-					blog.setBlog(OrgBlog);
-				}
-				blog.setBid(rs.getInt("b_id"));
-				blog.setUid(rs.getInt("u_id"));
-				blog.setContent(rs.getString("b_content"));
-				blog.setTime(rs.getTimestamp("b_time"));
-				blog.setAccount(rs.getString("u_account"));
-				blog.setNickname(rs.getString("u_nickname"));
-				blog.setFnum(rs.getInt("b_fnum"));
-				blog.setU_img(rs.getString("u_img"));
-				blog.setCnum(rs.getInt("b_cnum"));
-				blogList.add(blog);
-			}
-			return blogList;
-		} catch (SQLException e) {
-			WeiboLogger.exception(e);
-			return null;
-		} finally {
-			db.closeConn();
-		}
+		return mapBlogList(rs);
 	}
 
 	/**
@@ -159,23 +102,11 @@ public class BlogDao {
 	 */
 	public long getAllBlogSum(int uid) {
 
-		DB db = new DB();
 		String sql = "SELECT count(*) FROM blog LEFT JOIN user ON blog.u_id=user.u_id "
 				+ "WHERE blog.u_id=? OR blog.u_id=ANY(SELECT r_fid FROM relationship WHERE r_uid=?)";
 		// current user and who is following
 		ResultSet rs = db.executeQuery(sql, new Object[] {uid, uid});
-		try {
-			long num = 0;
-			while (rs.next()) {
-				num = rs.getInt("count(*)");
-			}
-			return num;
-		} catch (SQLException e) {
-			WeiboLogger.exception(e);
-			return 0;
-		} finally {
-			db.closeConn();
-		}
+		return mapCount(rs);
 	}
 	/**
 	 * count all my blog 
@@ -184,22 +115,10 @@ public class BlogDao {
 	 */
 	public long getAllMyBlogSum(int uid) {
 
-		DB db = new DB();
 		String sql = "SELECT count(*) FROM blog LEFT JOIN user ON blog.u_id=user.u_id WHERE blog.u_id=?";
 		// current user and who is following
 		ResultSet rs = db.executeQuery(sql, new Object[] {uid});
-		try {
-			long num = 0;
-			while (rs.next()) {
-				num = rs.getInt("count(*)");
-			}
-			return num;
-		} catch (SQLException e) {
-			WeiboLogger.exception(e);
-			return 0;
-		} finally {
-			db.closeConn();
-		}
+		return mapCount(rs);
 	}
 	/**
 	 * overload
@@ -330,6 +249,42 @@ public class BlogDao {
 		String sql = "SELECT count(*) FROM collection WHERE collection.u_id=?";
 		// current user and who is following
 		ResultSet rs = db.executeQuery(sql, new Object[] {uid});
+		return mapCount(rs);
+	}
+
+	private List<Blog> mapBlogList(ResultSet rs) {
+		List<Blog> blogList = new ArrayList<>();
+		try {
+			while (rs.next()) {
+                Blog blog = new Blog();
+
+                //judge the blog whether forward
+                int fid=rs.getInt("b_fid");
+                if(fid!=0){
+                    Blog OrgBlog = getBlogByBid(fid);//if it is a 'forwardblog' then get original blog
+                    blog.setBlog(OrgBlog);
+                }
+                blog.setBid(rs.getInt("b_id"));
+                blog.setUid(rs.getInt("u_id"));
+                blog.setContent(rs.getString("b_content"));
+                blog.setTime(rs.getTimestamp("b_time"));
+                blog.setAccount(rs.getString("u_account"));
+                blog.setNickname(rs.getString("u_nickname"));
+                blog.setFnum(rs.getInt("b_fnum"));
+                blog.setU_img(rs.getString("u_img"));
+                blog.setCnum(rs.getInt("b_cnum"));
+                blogList.add(blog);
+            }
+		} catch (SQLException e) {
+			WeiboLogger.exception(e);
+			e.printStackTrace();
+		} finally {
+			db.closeConn();
+		}
+		return blogList;
+	}
+
+	private long mapCount(ResultSet rs) {
 		try {
 			long num = 0;
 			while (rs.next()) {
@@ -342,6 +297,6 @@ public class BlogDao {
 		} finally {
 			db.closeConn();
 		}
-	}
 
+	}
 }

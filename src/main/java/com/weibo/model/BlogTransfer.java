@@ -1,5 +1,8 @@
 package com.weibo.model;
 
+import com.weibo.model.dao.UserInfoDao;
+import com.weibo.model.entity.UserInfo;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

@@ -3,17 +3,14 @@ package com.weibo.model;
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
-import static org.easymock.EasyMock.*;
-import org.junit.Before;
+import com.weibo.model.dao.BlogDao;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.weibo.DB.DB;
-import com.weibo.model.Blog;
-import com.weibo.model.BlogDao;
+import com.weibo.model.entity.Blog;
 
 public class BlogDaoTest {
 	private DB db = null;
@@ -45,7 +42,7 @@ public class BlogDaoTest {
 	@Test
 	@Ignore
 	public void test() {
-		ArrayList <Blog> blogList = new BlogDao().getAllBlogByUid(1, 4, 1);
+		List<Blog> blogList = new BlogDao().getAllBlogByUid(1, 4, 1);
 		System.out.println(blogList.toString());
 		assertNotNull(blogList);
 		assertNotNull(blogList.get(0).getBid());

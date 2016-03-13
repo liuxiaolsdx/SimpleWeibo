@@ -1,6 +1,7 @@
 package com.weibo.model;
 
 
+import com.weibo.model.entity.Blog;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

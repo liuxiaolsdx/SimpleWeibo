@@ -1,4 +1,4 @@
-package com.weibo.model;
+package com.weibo.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.weibo.DB.DB;
+import com.weibo.model.entity.UserInfo;
 import com.weibo.util.WeiboLogger;
 
 public class FriendsDao {
@@ -108,7 +109,7 @@ public class FriendsDao {
 	 * @param currPage : current page
 	 * @return List<UserInfo> following
 	 */
-	public List<UserInfo> getFollowing(int uid,int showPageNum,int currPage) {
+	public List<UserInfo> getFollowing(int uid, int showPageNum, int currPage) {
 		DB db = new DB();
 		List<UserInfo> userList = new ArrayList<>();
 		String sql = "select * from user where u_id=any(select r_fid from relationship where r_uid=?)"

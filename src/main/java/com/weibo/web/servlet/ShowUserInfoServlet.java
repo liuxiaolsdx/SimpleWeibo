@@ -1,8 +1,9 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import javax.servlet.http.*;
 
-import com.weibo.model.*;
+import com.weibo.model.dao.UserInfoDao;
+import com.weibo.model.entity.UserInfo;
 import com.weibo.util.WeiboLogger;
 
 import freemarker.template.Configuration;

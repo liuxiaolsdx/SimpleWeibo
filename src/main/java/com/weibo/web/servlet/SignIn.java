@@ -1,4 +1,4 @@
-package com.weibo.web;
+package com.weibo.web.servlet;
 
 import java.io.*;
 
@@ -6,7 +6,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import com.weibo.model.*;
+import com.weibo.model.dao.UserInfoDao;
+import com.weibo.model.entity.UserInfo;
 
 
 /**

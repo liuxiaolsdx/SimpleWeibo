@@ -1,4 +1,6 @@
-package com.weibo.model;
+package com.weibo.model.entity;
+
+import com.weibo.model.BlogTransfer;
 
 import java.sql.Timestamp;
 

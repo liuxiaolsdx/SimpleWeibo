@@ -3,16 +3,16 @@ package com.weibo.model;
 import static org.junit.Assert.*;
 
 //import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 //import static org.easymock.EasyMock.*;
 //import org.easymock.EasyMock;
+import com.weibo.model.dao.SearchDao;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.weibo.model.SearchDao;
-import com.weibo.model.UserInfo;
+import com.weibo.model.entity.UserInfo;
 
 //import com.mysql.jdbc.ResultSet;
 //import com.weibo.DB.DB;
@@ -44,7 +44,7 @@ public class SearchUserDaoTest {
 //			expectLastCall().andStubReturn("aaa");
 //			replay(mockResultSet,mockDB);
 			
-			ArrayList<UserInfo> userList = SDao.getSearchUser("",1,1);
+			List<UserInfo> userList = SDao.getSearchUser("",1,1);
 			assertNotNull(userList);
 			assertEquals(1,(int)userList.get(0).getU_id());
 			assertEquals("first",userList.get(0).getU_account());
