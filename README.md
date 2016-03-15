@@ -6,4 +6,11 @@ Now the website was deployed at [http://lsdx.me](http://lsdx.me ). For more bugs
 ### Technology
 Servlet, JDBC, Freemarker, Maven, JUnit, Log4j…
 ### TODO
-More CSS and JS elements; Some awesome features like using consoles to play weibo.
+* DAO layer abstraction
+* Entity automatic mapping using reflect
+* Servlet isolate the Service layer
+* Servlet abstraction.
+* URL mapping
+* FreeMarker configuration optimize
+* Add multi-thread security and database connection pool
+* More CSS and JS elements; Some awesome features like using consoles to play weibo.
